@@ -17,11 +17,9 @@ export class HttpService {
 	public createQueryLink(base: string, args: IMap): string {
 		let url = `${base}?`;
 
-		Object.keys(args as object).forEach((parameter, index) => {
-			if (args[parameter]) {
-				url = `${url}${
-					index > QUERY_LINK_OFFSET ? '&' : ''
-				}${parameter}=${String(args[parameter])}`;
+		Object.keys(args).forEach((parameter) => {
+			if (typeof args[parameter] !== 'undefined') {
+				url = `${url}&${parameter}=${String(args[parameter])}`;
 			}
 		});
 
